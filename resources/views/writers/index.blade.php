@@ -2,11 +2,12 @@
 
 @section('content')
     <h2 class="text-xl font-semibold mb-4">Daftar Penulis</h2>
-    
-<a href="{{ route('writers.create') }}"
-    class="bg-blue-600 text-white px-4 py-2 rounded mb-4 inline-block">
-    + Tambah Penulis
-</a>
+
+    <a href="{{ route('writers.create') }}"
+        class="bg-blue-600 text-white px-4 py-2 rounded mb-4 inline-block">
+        + Tambah Penulis
+    </a>
+
     @if ($writers->isEmpty())
         <p class="text-gray-500">Belum ada data penulis.</p>
     @else
@@ -19,7 +20,8 @@
                         <th class="border p-2">Email</th>
                         <th class="border p-2">Genre Tulisan</th>
                         <th class="border p-2">Jumlah Buku</th>
-                        <th class="border p-2">novel</th>
+                        <th class="border p-2">Novel</th>
+                        <th class="border p-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +32,13 @@
                             <td class="border p-2">{{ $writer->email }}</td>
                             <td class="border p-2">{{ $writer->genre_tulisan }}</td>
                             <td class="border p-2">{{ $writer->jumlah_buku }}</td>
-                            <td class="border p-2">{{ $writer->novel}}</td>
+                            <td class="border p-2">{{ $writer->novel }}</td>
+                            <td class="border p-2">
+                                <a href="{{ route('writers.edit', $writer->id) }}"
+                                    class="bg-yellow-500 text-white px-3 py-1 rounded">
+                                    Edit
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -34,4 +34,24 @@ class WriterController extends Controller
         return redirect()->route('writers.index')
             ->with('success', 'Data penulis berhasil ditambahkan.');
     }
+    public function edit(Writer $writer)
+{
+    return view('writers.edit', compact('writer'));
+}
+
+public function update(Request $request, Writer $writer)
+{
+    $validated = $request->validate([
+        'nama' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'genre_tulisan' => 'required|string|max:255',
+        'jumlah_buku' => 'required|integer|min:0',
+        'novel' => 'required|string',
+    ]);
+
+    $writer->update($validated);
+
+    return redirect()->route('writers.index')
+        ->with('success', 'Data penulis berhasil diperbarui.');
+}
 }
