@@ -2,7 +2,11 @@
 
 @section('content')
     <h2 class="text-xl font-semibold mb-4">Daftar Penulis</h2>
-
+    
+<a href="{{ route('writers.create') }}"
+    class="bg-blue-600 text-white px-4 py-2 rounded mb-4 inline-block">
+    + Tambah Penulis
+</a>
     @if ($writers->isEmpty())
         <p class="text-gray-500">Belum ada data penulis.</p>
     @else
