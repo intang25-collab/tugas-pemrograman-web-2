@@ -11,33 +11,47 @@
     @if ($writers->isEmpty())
         <p class="text-gray-500">Belum ada data penulis.</p>
     @else
-        <div class="overflow-x-auto">
-            <table class="w-full border-collapse border border-gray-300">
+        <div class="overflow-x-auto rounded-lg shadow">
+            <table class="w-full border-collapse bg-white text-sm">
                 <thead>
-                    <tr class="bg-gray-200">
-                        <th class="border p-2">No</th>
-                        <th class="border p-2">Nama</th>
-                        <th class="border p-2">Email</th>
-                        <th class="border p-2">Genre Tulisan</th>
-                        <th class="border p-2">Jumlah Buku</th>
-                        <th class="border p-2">Novel</th>
-                        <th class="border p-2">Aksi</th>
+                    <tr class="bg-gray-200 text-gray-700">
+                        <th class="border p-3 text-center">No</th>
+                        <th class="border p-3 text-left">Nama</th>
+                        <th class="border p-3 text-left">Email</th>
+                        <th class="border p-3 text-left">Genre Tulisan</th>
+                        <th class="border p-3 text-center">Jumlah Buku</th>
+                        <th class="border p-3 text-left">Novel</th>
+                        <th class="border p-3 text-center">Aksi</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @foreach ($writers as $writer)
-                        <tr>
-                            <td class="border p-2">{{ $loop->iteration }}</td>
-                            <td class="border p-2">{{ $writer->nama }}</td>
-                            <td class="border p-2">{{ $writer->email }}</td>
-                            <td class="border p-2">{{ $writer->genre_tulisan }}</td>
-                            <td class="border p-2">{{ $writer->jumlah_buku }}</td>
-                            <td class="border p-2">{{ $writer->novel }}</td>
-                            <td class="border p-2">
+                        <tr class="hover:bg-gray-50">
+                            <td class="border p-3 text-center">{{ $loop->iteration }}</td>
+                            <td class="border p-3">{{ $writer->nama }}</td>
+                            <td class="border p-3">{{ $writer->email }}</td>
+                            <td class="border p-3">{{ $writer->genre_tulisan }}</td>
+                            <td class="border p-3 text-center">{{ $writer->jumlah_buku }}</td>
+                            <td class="border p-3">{{ $writer->novel }}</td>
+
+                            <td class="border p-3 text-center whitespace-nowrap">
                                 <a href="{{ route('writers.edit', $writer->id) }}"
                                     class="bg-yellow-500 text-white px-3 py-1 rounded">
                                     Edit
                                 </a>
+
+                                <form action="{{ route('writers.destroy', $writer->id) }}"
+                                    method="POST" class="inline"
+                                    onsubmit="return confirm('Yakin ingin menghapus data penulis ini?')">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit"
+                                        class="bg-red-600 text-white px-3 py-1 rounded">
+                                        Hapus
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
