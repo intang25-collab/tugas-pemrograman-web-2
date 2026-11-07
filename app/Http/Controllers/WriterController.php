@@ -54,4 +54,11 @@ public function update(Request $request, Writer $writer)
     return redirect()->route('writers.index')
         ->with('success', 'Data penulis berhasil diperbarui.');
 }
+public function destroy(Writer $writer)
+{
+    $writer->delete();
+
+    return redirect()->route('writers.index')
+        ->with('success', 'Data penulis berhasil dihapus.');
+}
 }

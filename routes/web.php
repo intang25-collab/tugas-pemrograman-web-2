@@ -12,3 +12,5 @@ Route::post('/writers', [WriterController::class, 'store'])->name('writers.store
 Route::get('/writers/{writer}/edit', [WriterController::class, 'edit'])->name('writers.edit');
 
 Route::put('/writers/{writer}', [WriterController::class, 'update'])->name('writers.update');
+
+Route::delete('/writers/{writer}', [WriterController::class, 'destroy'])->name('writers.destroy');

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('genre_tulisan');
             $table->integer('jumlah_buku');
             $table->text('novel');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
